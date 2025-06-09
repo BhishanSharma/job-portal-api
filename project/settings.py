@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user_app',
     'job_app',
     'application_app',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
