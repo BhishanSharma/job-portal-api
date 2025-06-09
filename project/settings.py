@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'job_app',
     'application_app',
     'drf_yasg',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -134,8 +135,17 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
 }
+
+REST_FRAMEWORK.update({
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ],
+})
 
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@jobportal.com')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
