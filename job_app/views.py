@@ -12,7 +12,7 @@ class JobViewSet(viewsets.ModelViewSet):
     # ✅ Add filtering, search, pagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['location', 'job_type']
-    search_fields = ['title', 'company_name']
+    search_fields = ['title', 'owner__username']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
